@@ -11,7 +11,7 @@ This project is a full-stack web application that allows users to input ingredie
 **Ingredient Search:** Find recipes containing specific ingredients using a flexible search.<br>
 **Category Filtering:** Filter results by Breakfast, Vegetarian, Non-Veg, or Quick Meals.<br>
 **Responsive Design:** Fully optimized for desktops, tablets, and mobile phones.<br>
-**Custom UI Components:** Includes a custom-styled dropdown menu and interactive hover effects.<>br
+**Custom UI Components:** Includes a custom-styled dropdown menu and interactive hover effects.<br>
 **Instant Results:** Uses JavaScript Fetch API for asynchronous, page-refresh-free results.
 
 ## 🛠️ Tech Stack
@@ -22,12 +22,12 @@ This project is a full-stack web application that allows users to input ingredie
 
 ## 📂 File Structure
 
-  * [cite_start]`index.html`: The main user interface containing the search form and results grid[cite: 1].
-  * [cite_start]`styles.css`: Contains all styling variables, responsive rules, and animations[cite: 2].
-  * `app.js`: Handles frontend logic, the custom dropdown, and communicates with the backend API.
-  * `api.php`: The backend script that queries the database and returns JSON data.
-  * `recipes.db`: The SQLite database file containing recipe data.
-  * `schema.sql`: SQL script used to create the table and insert initial sample data.
+  * index.html : The main user interface containing the search form and results grid.<br>
+  * styles.css : Contains all styling variables, responsive rules, and animations.<br>
+  * app.js : Handles frontend logic, the custom dropdown, and communicates with the backend API.
+  * api.php : The backend script that queries the database and returns JSON data.
+  * recipes.db : The SQLite database file containing recipe data.
+  * schema.sql : SQL script used to create the table and insert initial sample data.
 
 ## 🚀 How to Run
 
