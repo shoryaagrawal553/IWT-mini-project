@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Recommender Design</title>
+    <title>Recipe Recommender</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
 
@@ -18,108 +17,69 @@
         <p class="subtitle">Find perfect recipes based on ingredients you already have at home. Simple, quick, and delicious.</p>
     </header>
 
-    <main class="card-container">
-        <div class="input-group">
-            <label for="ingredients">What ingredients do you have?</label>
-            <div class="input-wrapper">
-                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input type="text" id="ingredients" placeholder="e.g., egg, tomato, chicken...">
-            </div>
-        </div>
-
-        <div class="input-group">
-            <label>Category</label>
-            <div class="custom-select-container" id="categoryDropdown">
-                <div class="custom-select-trigger">
-                    <span class="selected-text">🍽️ All Categories</span>
-                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    <main class="container">
+        <div class="card-container">
+            <div class="input-group">
+                <label for="ingredients">What ingredients do you have?</label>
+                <div class="input-wrapper">
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
+                    <input type="text" id="ingredients" placeholder="e.g., egg, tomato, chicken...">
                 </div>
-                <div class="custom-options">
-                    <div class="custom-option selected" data-value="all">
-                        <span>🍽️ All Categories</span>
-                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+
+            <div class="input-group">
+                <label>Category</label>
+                <div class="custom-select-container" id="categoryDropdown">
+                    <div class="custom-select-trigger">
+                        <span class="selected-text">🍽️ All Categories</span>
+                        <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </div>
-                    <div class="custom-option" data-value="breakfast">
-                        <span>🌅 Breakfast</span>
-                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div class="custom-option" data-value="vegetarian">
-                        <span>🥦 Vegetarian</span>
-                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                    <div class="custom-option" data-value="non-veg">
-                        <span>🍗 Non-Veg</span>
-                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    </div>
-                     <div class="custom-option" data-value="quick">
-                        <span>⚡ Quick Meals</span>
-                        <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <div class="custom-options">
+                        <div class="custom-option selected" data-value="all">
+                            <span>🍽️ All Categories</span>
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="custom-option" data-value="breakfast">
+                            <span>🌅 Breakfast</span>
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="custom-option" data-value="veg">
+                            <span>🥦 Vegetarian</span>
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <div class="custom-option" data-value="non-veg">
+                            <span>🍗 Non-Veg</span>
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                         <div class="custom-option" data-value="quick">
+                            <span>⚡ Quick Meals</span>
+                            <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <button class="search-btn" id="findBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L14.4 7.6L20 10L14.4 12.4L12 18L9.6 12.4L4 10L9.6 7.6z"/>
+                    <path d="M20 2L21.2 4.8L24 6L21.2 7.2L20 10L18.8 7.2L16 6L18.8 4.8z"/>
+                     <path d="M4 16L5.2 18.8L8 20L5.2 21.2L4 24L2.8 21.2L0 20L2.8 18.8z"/>
+                </svg>
+                Find Recipes
+            </button>
         </div>
 
-        <button class="search-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L14.4 7.6L20 10L14.4 12.4L12 18L9.6 12.4L4 10L9.6 7.6z"/>
-                <path d="M20 2L21.2 4.8L24 6L21.2 7.2L20 10L18.8 7.2L16 6L18.8 4.8z"/>
-                 <path d="M4 16L5.2 18.8L8 20L5.2 21.2L4 24L2.8 21.2L0 20L2.8 18.8z"/>
-            </svg>
-            Find Recipes
-        </button>
+        <div id="results" class="results-grid"></div>
     </main>
 
     <footer>
         Made with ❤️ for home cooks everywhere
     </footer>
 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownContainer = document.getElementById('categoryDropdown');
-            const trigger = dropdownContainer.querySelector('.custom-select-trigger');
-            const selectedTextSpan = dropdownContainer.querySelector('.selected-text');
-            const options = dropdownContainer.querySelectorAll('.custom-option');
-
-            // Toggle dropdown open/close
-            trigger.addEventListener('click', function(e) {
-                dropdownContainer.classList.toggle('open');
-                e.stopPropagation(); // Prevent bubbling to document click
-            });
-
-            // Handle option selection
-            options.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selected class from all
-                    options.forEach(opt => opt.classList.remove('selected'));
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    
-                    // Update trigger text (getting the text content spanning from the option)
-                    const optionText = this.querySelector('span').textContent;
-                    selectedTextSpan.textContent = optionText;
-                    
-                    // Close dropdown
-                    dropdownContainer.classList.remove('open');
-                    
-                    // Optional: Get value for form submission
-                    // const value = this.getAttribute('data-value');
-                    // console.log("Selected value:", value);
-                });
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!dropdownContainer.contains(e.target)) {
-                    dropdownContainer.classList.remove('open');
-                }
-            });
-        });
-    </script>
-
+    <script src="app.js"></script>
 </body>
 </html>
