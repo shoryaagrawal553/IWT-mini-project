@@ -1,8 +1,15 @@
 <?php
 header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *"); // Optional: for testing
 
 // Connect to SQLite database
-$db = new PDO("sqlite:recipes.db");
+try {
+    $db = new PDO("sqlite:recipes.db");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    echo json_encode(["error" => "Database connection failed"]);
+    exit;
+}
 
 // Read POST data
 $ingredient = $_POST["ingredient"] ?? "";
@@ -18,7 +25,7 @@ if (!empty($ingredient)) {
     $params[':ing'] = "%" . $ingredient . "%";
 }
 
-// If a category is selected → match exact
+// If a category is selected (and not empty) → match exact
 if (!empty($category)) {
     $query .= " AND category = :cat";
     $params[':cat'] = $category;

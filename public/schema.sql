@@ -1,4 +1,3 @@
--- schema.sql
 DROP TABLE IF EXISTS recipes;
 
 CREATE TABLE recipes (

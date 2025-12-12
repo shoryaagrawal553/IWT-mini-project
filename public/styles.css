@@ -1,6 +1,6 @@
 /* --- CSS Variables & Reset --- */
 :root {
-  --bg-color: #faf5ef; /* Light cream background */
+  --bg-color: #faf5ef;
   --primary-orange: #e87a38;
   --gradient-orange: linear-gradient(90deg, #e87a38 0%, #f2a65a 100%);
   --text-dark: #2c2c2c;
@@ -23,9 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 20px;
-  /* Optional background patterns could be added here */
+  padding: 40px 20px;
 }
 
 /* --- Typography & Header --- */
@@ -48,7 +46,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* Using the serif font for the main heading */
 h1 {
   font-family: "Playfair Display", serif;
   font-size: 3.5rem;
@@ -68,13 +65,20 @@ h1 .highlight {
 }
 
 /* --- Main Card Container --- */
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
 .card-container {
   background-color: #fff;
   padding: 40px;
   border-radius: 24px;
   box-shadow: var(--card-shadow);
   width: 100%;
-  max-width: 680px;
 }
 
 /* --- Form Elements --- */
@@ -89,7 +93,6 @@ h1 .highlight {
   color: var(--text-dark);
 }
 
-/* Wrapper for input to position the search icon */
 .input-wrapper {
   position: relative;
   display: flex;
@@ -106,7 +109,7 @@ h1 .highlight {
 
 input[type="text"] {
   width: 100%;
-  padding: 16px 16px 16px 48px; /* Left padding makes room for icon */
+  padding: 16px 16px 16px 48px;
   border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 1rem;
@@ -115,17 +118,11 @@ input[type="text"] {
   transition: border-color 0.3s;
 }
 
-input[type="text"]::placeholder {
-  color: #a0a0a0;
-}
-
 input[type="text"]:focus {
   border-color: var(--primary-orange);
 }
 
 /* --- Custom Dropdown Styling --- */
-/* Standard <select> cannot achieve the exact look in the image, 
-           so we build a custom one. */
 .custom-select-container {
   position: relative;
 }
@@ -151,7 +148,6 @@ input[type="text"]:focus {
   transition: transform 0.3s ease;
 }
 
-/* Rotate arrow when open */
 .custom-select-container.open .arrow-icon {
   transform: rotate(180deg);
 }
@@ -166,15 +162,12 @@ input[type="text"]:focus {
   border-radius: 12px;
   box-shadow: var(--card-shadow);
   z-index: 10;
-
-  /* Hidden state */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
 }
 
-/* Visible state added by JS */
 .custom-select-container.open .custom-options {
   opacity: 1;
   visibility: visible;
@@ -193,16 +186,8 @@ input[type="text"]:focus {
   background-color: #f9f9f9;
 }
 
-.custom-option:first-child {
-  border-radius: 12px 12px 0 0;
-}
-.custom-option:last-child {
-  border-radius: 0 0 12px 12px;
-}
-
-/* Checkmark style for selected option */
 .custom-option.selected {
-  background-color: #fff5f0; /* Very pale orange */
+  background-color: #fff5f0;
   font-weight: 500;
   justify-content: space-between;
 }
@@ -243,6 +228,38 @@ input[type="text"]:focus {
   transform: scale(0.99);
 }
 
+/* --- Results Grid --- */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.recipe-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 6px solid var(--primary-orange);
+    transition: transform 0.2s;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+}
+
+.recipe-card h3 {
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.recipe-meta {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-bottom: 12px;
+}
+
 /* --- Footer --- */
 footer {
   margin-top: 60px;
@@ -250,12 +267,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* --- Responsive adjustments --- */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-  .card-container {
-    padding: 24px;
-  }
+  h1 { font-size: 2.5rem; }
+  .card-container { padding: 24px; }
 }
