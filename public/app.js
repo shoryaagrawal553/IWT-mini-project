@@ -54,7 +54,21 @@ function searchRecipes() {
         body: `ingredient=${encodeURIComponent(ingredient)}&category=${encodeURIComponent(category)}`
     })
     .then(res => res.json())
-    .then(data => renderResults(data))
+    .then(data => {
+        // If API returned { message, results }
+        if (data.results && Array.isArray(data.results)) {
+            renderResults(data.results);
+        }
+        // If API returned array directly
+        else if (Array.isArray(data)) {
+            renderResults(data);
+        }
+        // Fallback
+        else {
+            renderResults([]);
+            console.log("Unexpected API response:", data);
+        }
+    })
     .catch(err => console.error("Fetch error:", err));
 }
 

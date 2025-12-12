@@ -22,10 +22,10 @@ $query = "SELECT * FROM recipes WHERE 1=1";
 $params = [];
 
 /* ---------------------------------------
-   MULTIPLE INGREDIENT SEARCH
-   ---------------------------------------
-   User enters: "egg, tomato, cheese"
-   → Matches recipes containing ALL of them.
+    MULTIPLE INGREDIENT SEARCH
+    ---------------------------------------
+    User enters: "egg, tomato, cheese"
+    → Matches recipes containing ALL of them.
 --------------------------------------- */
 if (!empty($ingredientInput)) {
     $ingredients = array_filter(array_map('trim', explode(",", $ingredientInput)));
