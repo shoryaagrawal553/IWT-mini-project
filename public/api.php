@@ -30,11 +30,14 @@ $params = [];
 if (!empty($ingredientInput)) {
     $ingredients = array_filter(array_map('trim', explode(",", $ingredientInput)));
 
+    $conditions = [];
     foreach ($ingredients as $index => $ing) {
         $key = ":ing$index";
-        $query .= " AND ingredients LIKE $key";
+        $conditions[] = "ingredients LIKE $key";
         $params[$key] = "%$ing%";
     }
+
+    $query .= " AND (" . implode(" OR ", $conditions) . ")";
 }
 
 // Category filter
