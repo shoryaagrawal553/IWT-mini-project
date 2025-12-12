@@ -55,20 +55,10 @@ function searchRecipes() {
     })
     .then(res => res.json())
     .then(data => {
-        // If API returned { message, results }
-        if (data.results && Array.isArray(data.results)) {
-            renderResults(data.results);
-        }
-        // If API returned array directly
-        else if (Array.isArray(data)) {
-            renderResults(data);
-        }
-        // Fallback
-        else {
-            renderResults([]);
-            console.log("Unexpected API response:", data);
-        }
+        console.log("API response:", data); // DEBUG
+        renderResults(Array.isArray(data) ? data : []);
     })
+
     .catch(err => console.error("Fetch error:", err));
 }
 

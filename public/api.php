@@ -1,67 +1,37 @@
 <?php
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
-header("Access-Control-Allow-Methods: POST");
 
-// Connect to SQLite database
-try {
-    $db = new PDO("sqlite:recipes.db");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo json_encode(["error" => "Database connection failed"]);
-    exit;
-}
+$db = new PDO("sqlite:" . __DIR__ . "/recipes.db");
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Read POST data
 $ingredientInput = $_POST["ingredient"] ?? "";
 $category        = $_POST["category"] ?? "";
 
-// Base query
 $query = "SELECT * FROM recipes WHERE 1=1";
 $params = [];
 
-/* ---------------------------------------
-    MULTIPLE INGREDIENT SEARCH
-    ---------------------------------------
-    User enters: "egg, tomato, cheese"
-    → Matches recipes containing ALL of them.
---------------------------------------- */
+// OR-based ingredient search
 if (!empty($ingredientInput)) {
     $ingredients = array_filter(array_map('trim', explode(",", $ingredientInput)));
-
-    $conditions = [];
-    foreach ($ingredients as $index => $ing) {
-        $key = ":ing$index";
-        $conditions[] = "ingredients LIKE $key";
-        $params[$key] = "%$ing%";
+    if ($ingredients) {
+        $conditions = [];
+        foreach ($ingredients as $i => $ing) {
+            $key = ":ing$i";
+            $conditions[] = "ingredients LIKE $key";
+            $params[$key] = "%$ing%";
+        }
+        $query .= " AND (" . implode(" OR ", $conditions) . ")";
     }
-
-    $query .= " AND (" . implode(" OR ", $conditions) . ")";
 }
 
 // Category filter
 if (!empty($category)) {
     $query .= " AND category = :cat";
-    $params[':cat'] = $category;
+    $params[":cat"] = $category;
 }
 
-// Prepare + execute
 $stmt = $db->prepare($query);
 $stmt->execute($params);
 
-// Fetch all matching rows
-$recipes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// If nothing matched, return friendly message
-if (!$recipes || count($recipes) === 0) {
-    echo json_encode([
-        "message" => "No recipes found matching your search.",
-        "results" => []
-    ]);
-    exit;
-}
-
-// Success → return recipes
-echo json_encode($recipes);
-?>
+// 🚨 IMPORTANT: return ARRAY ONLY
+echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
