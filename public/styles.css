@@ -1,42 +1,261 @@
+/* --- CSS Variables & Reset --- */
+:root {
+  --bg-color: #faf5ef; /* Light cream background */
+  --primary-orange: #e87a38;
+  --gradient-orange: linear-gradient(90deg, #e87a38 0%, #f2a65a 100%);
+  --text-dark: #2c2c2c;
+  --text-gray: #777777;
+  --border-color: #e0e0e0;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f2f2f2;
-    padding: 20px;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* Optional background patterns could be added here */
 }
 
+/* --- Typography & Header --- */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #fbeae1;
+  color: var(--primary-orange);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Using the serif font for the main heading */
 h1 {
-    text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin-bottom: 16px;
 }
 
-.search-box {
-    background: white;
-    padding: 20px;
-    width: 350px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #ccc;
+h1 .highlight {
+  color: var(--primary-orange);
 }
 
-input, select, button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 8px;
+.subtitle {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* --- Main Card Container --- */
+.card-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 680px;
 }
 
-#results {
-    margin-top: 30px;
-    padding: 10px;
+/* --- Form Elements --- */
+.input-group {
+  margin-bottom: 24px;
 }
-.recipe-card {
-    background: white;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
+
+.input-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+/* Wrapper for input to position the search icon */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: #a0a0a0;
+  width: 20px;
+  height: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 16px 16px 16px 48px; /* Left padding makes room for icon */
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]::placeholder {
+  color: #a0a0a0;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-orange);
+}
+
+/* --- Custom Dropdown Styling --- */
+/* Standard <select> cannot achieve the exact look in the image, 
+           so we build a custom one. */
+.custom-select-container {
+  position: relative;
+}
+
+.custom-select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.arrow-icon {
+  width: 20px;
+  height: 20px;
+  color: #a0a0a0;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when open */
+.custom-select-container.open .arrow-icon {
+  transform: rotate(180deg);
+}
+
+.custom-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  z-index: 10;
+
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+/* Visible state added by JS */
+.custom-select-container.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.custom-option {
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.custom-option:hover {
+  background-color: #f9f9f9;
+}
+
+.custom-option:first-child {
+  border-radius: 12px 12px 0 0;
+}
+.custom-option:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+/* Checkmark style for selected option */
+.custom-option.selected {
+  background-color: #fff5f0; /* Very pale orange */
+  font-weight: 500;
+  justify-content: space-between;
+}
+
+.custom-option .check-icon {
+  display: none;
+  color: var(--primary-orange);
+}
+
+.custom-option.selected .check-icon {
+  display: block;
+}
+
+/* --- Submit Button --- */
+.search-btn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  background: var(--gradient-orange);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+.search-btn:hover {
+  opacity: 0.95;
+}
+
+.search-btn:active {
+  transform: scale(0.99);
+}
+
+/* --- Footer --- */
+footer {
+  margin-top: 60px;
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  .card-container {
+    padding: 24px;
+  }
 }
