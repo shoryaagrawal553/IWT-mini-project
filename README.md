@@ -8,11 +8,11 @@ This project is a full-stack web application that allows users to input ingredie
 
 ## ✨ Features
 
-  * [cite_start]**Ingredient Search:** Find recipes containing specific ingredients using a flexible search[cite: 1, 3].
-  * [cite_start]**Category Filtering:** Filter results by Breakfast, Vegetarian, Non-Veg, or Quick Meals[cite: 1, 5].
-  * [cite_start]**Responsive Design:** Fully optimized for desktops, tablets, and mobile phones[cite: 1, 2].
-  * [cite_start]**Custom UI Components:** Includes a custom-styled dropdown menu and interactive hover effects[cite: 2, 3].
-  * **Instant Results:** Uses JavaScript Fetch API for asynchronous, page-refresh-free results.
+**Ingredient Search:** Find recipes containing specific ingredients using a flexible search[cite: 1, 3].
+**Category Filtering:** Filter results by Breakfast, Vegetarian, Non-Veg, or Quick Meals[cite: 1, 5].
+**Responsive Design:** Fully optimized for desktops, tablets, and mobile phones[cite: 1, 2].
+**Custom UI Components:** Includes a custom-styled dropdown menu and interactive hover effects[cite: 2, 3].
+**Instant Results:** Uses JavaScript Fetch API for asynchronous, page-refresh-free results.
 
 ## 🛠️ Tech Stack
 
