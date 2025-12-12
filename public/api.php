@@ -4,21 +4,21 @@ header("Content-Type: application/json");
 $db = new PDO("sqlite:" . __DIR__ . "/recipes.db");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$ingredientInput = $_POST["ingredient"] ?? "";
-$category        = $_POST["category"] ?? "";
+$ingredient = $_POST["ingredient"] ?? "";
+$category   = $_POST["category"] ?? "";
 
 $query = "SELECT * FROM recipes WHERE 1=1";
 $params = [];
 
-// OR-based ingredient search
-if (!empty($ingredientInput)) {
-    $ingredients = array_filter(array_map('trim', explode(",", $ingredientInput)));
-    if ($ingredients) {
+// OR-based ingredient matching
+if (!empty($ingredient)) {
+    $items = array_filter(array_map("trim", explode(",", $ingredient)));
+    if ($items) {
         $conditions = [];
-        foreach ($ingredients as $i => $ing) {
+        foreach ($items as $i => $item) {
             $key = ":ing$i";
             $conditions[] = "ingredients LIKE $key";
-            $params[$key] = "%$ing%";
+            $params[$key] = "%$item%";
         }
         $query .= " AND (" . implode(" OR ", $conditions) . ")";
     }
@@ -33,5 +33,4 @@ if (!empty($category)) {
 $stmt = $db->prepare($query);
 $stmt->execute($params);
 
-// 🚨 IMPORTANT: return ARRAY ONLY
 echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));

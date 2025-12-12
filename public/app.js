@@ -1,52 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Setup Dropdown Logic
-    const dropdownContainer = document.getElementById('categoryDropdown');
-    const trigger = dropdownContainer.querySelector('.custom-select-trigger');
-    const selectedTextSpan = dropdownContainer.querySelector('.selected-text');
-    const options = dropdownContainer.querySelectorAll('.custom-option');
+document.addEventListener("DOMContentLoaded", () => {
 
-    // Toggle dropdown open/close
-    trigger.addEventListener('click', function(e) {
-        dropdownContainer.classList.toggle('open');
-        e.stopPropagation();
+    const dropdown = document.getElementById("categoryDropdown");
+    const trigger = dropdown.querySelector(".custom-select-trigger");
+    const options = dropdown.querySelectorAll(".custom-option");
+    const selectedText = dropdown.querySelector(".selected-text");
+
+    trigger.addEventListener("click", () => {
+        dropdown.classList.toggle("open");
     });
 
-    // Handle option selection
     options.forEach(option => {
-        option.addEventListener('click', function() {
-            options.forEach(opt => opt.classList.remove('selected'));
-            this.classList.add('selected');
-            
-            const optionText = this.querySelector('span').textContent;
-            selectedTextSpan.textContent = optionText;
-            dropdownContainer.classList.remove('open');
+        option.addEventListener("click", () => {
+            options.forEach(o => o.classList.remove("selected"));
+            option.classList.add("selected");
+            selectedText.textContent = option.textContent;
+            dropdown.classList.remove("open");
         });
     });
 
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!dropdownContainer.contains(e.target)) {
-            dropdownContainer.classList.remove('open');
-        }
-    });
-
-    // 2. Setup Search Logic
     document.getElementById("findBtn").addEventListener("click", searchRecipes);
 });
 
 function searchRecipes() {
     const ingredient = document.getElementById("ingredients").value;
-    
-    // Get value from our custom dropdown
-    const selectedOption = document.querySelector('.custom-option.selected');
-    let category = selectedOption ? selectedOption.getAttribute('data-value') : 'all';
+    const selected = document.querySelector(".custom-option.selected");
+    let category = selected ? selected.getAttribute("data-value") : "";
 
-    // If "all" is selected, send empty string to API so it returns everything
-    if (category === 'all') {
-        category = '';
-    }
-
-    console.log(`Searching: Ingredient=${ingredient}, Category=${category}`);
+    if (category === "all") category = "";
 
     fetch("api.php", {
         method: "POST",
@@ -54,12 +34,8 @@ function searchRecipes() {
         body: `ingredient=${encodeURIComponent(ingredient)}&category=${encodeURIComponent(category)}`
     })
     .then(res => res.json())
-    .then(data => {
-        console.log("API response:", data); // DEBUG
-        renderResults(Array.isArray(data) ? data : []);
-    })
-
-    .catch(err => console.error("Fetch error:", err));
+    .then(data => renderResults(data))
+    .catch(() => renderResults([]));
 }
 
 function renderResults(recipes) {
@@ -67,20 +43,17 @@ function renderResults(recipes) {
     container.innerHTML = "";
 
     if (!recipes || recipes.length === 0) {
-        container.innerHTML = "<p style='text-align:center; width:100%; color:#777;'>No recipes found matching your criteria.</p>";
+        container.innerHTML = "<p>No recipes found matching your criteria.</p>";
         return;
     }
 
-    recipes.forEach(recipe => {
+    recipes.forEach(r => {
         container.innerHTML += `
             <div class="recipe-card">
-                <h3>${recipe.name}</h3>
-                <div class="recipe-meta">
-                    <strong>Category:</strong> ${recipe.category.toUpperCase()}
-                </div>
-                <p><strong>Ingredients:</strong> ${recipe.ingredients}</p>
-                <br>
-                <p>${recipe.instructions}</p>
+                <h3>${r.name}</h3>
+                <p><strong>Ingredients:</strong> ${r.ingredients}</p>
+                <p><strong>Category:</strong> ${r.category}</p>
+                <p>${r.instructions}</p>
             </div>
         `;
     });
