@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Recommender</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>🍲 Recipe Recommender</h1>
+
+    <div class="search-box">
+        <label>Ingredient:</label>
+        <input type="text" id="ingredientInput" placeholder="e.g., egg, milk, tomato">
+
+        <label>Category:</label>
+        <select id="categorySelect">
+            <option value="">Any</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+            <option value="quick">Quick Meals</option>
+        </select>
+
+        <button onclick="searchRecipes()">Search</button>
+    </div>
+
+    <h2>Results</h2>
+    <div id="results"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
