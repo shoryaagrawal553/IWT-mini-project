@@ -22,12 +22,12 @@ This project is a full-stack web application that allows users to input ingredie
 
 ## 📂 File Structure
 
-  * index.html : The main user interface containing the search form and results grid.<br>
-  * styles.css : Contains all styling variables, responsive rules, and animations.<br>
-  * app.js : Handles frontend logic, the custom dropdown, and communicates with the backend API.
-  * api.php : The backend script that queries the database and returns JSON data.
-  * recipes.db : The SQLite database file containing recipe data.
-  * schema.sql : SQL script used to create the table and insert initial sample data.
+  * **index.html :** The main user interface containing the search form and results grid.<br>
+  * **styles.css :** Contains all styling variables, responsive rules, and animations.<br>
+  * **app.js :** Handles frontend logic, the custom dropdown, and communicates with the backend API.
+  * **api.php :** The backend script that queries the database and returns JSON data.
+  * **recipes.db :** The SQLite database file containing recipe data.
+  * **schema.sql :** SQL script used to create the table and insert initial sample data.
 
 ## 🚀 How to Run
 
