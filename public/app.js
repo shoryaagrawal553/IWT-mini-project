@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const dropdown = document.getElementById("categoryDropdown");
     const trigger = dropdown.querySelector(".custom-select-trigger"); 
-    const options = dropdown.querySelectorAll(".custom-option");
+    const options = dropdown.querySelectorAll(".custom-option"); 
     const selectedText = dropdown.querySelector(".selected-text");
  
     trigger.addEventListener("click", () => {
