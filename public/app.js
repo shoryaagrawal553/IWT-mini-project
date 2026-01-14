@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const options = dropdown.querySelectorAll(".custom-option"); 
     const selectedText = dropdown.querySelector(".selected-text");
  
-    trigger.addEventListener("click", () => {
+    trigger.addEventListener("click", () => { 
         dropdown.classList.toggle("open");
     });
 
