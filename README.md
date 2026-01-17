@@ -1,5 +1,5 @@
 # 🍲 Recipe Recommender
- 
+  
 A responsive web application that helps users discover recipes based on the ingredients they have at home and their dietary preferences.
 
 ## 📋 Project Overview
